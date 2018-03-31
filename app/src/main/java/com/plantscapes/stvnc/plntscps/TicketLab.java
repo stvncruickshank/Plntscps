@@ -42,6 +42,13 @@ public class TicketLab {
         mDatabase.insert(TicketSchema.TicketTable.NAME, null, values);
     }
 
+    public int deleteTicket(String name)
+    {
+        //do this as a WHERE statement to prevent SQL injection
+        //if ACCTNAME == string name, then BYEEEEEEE
+        return mDatabase.delete(TicketSchema.TicketTable.NAME,"ACCTNAME=?",new String[] {name});
+    }
+
     public List<Ticket> getRes() {
         List<Ticket> crimes = new ArrayList<>();
         TicketCursorWrapper cursor = queryCrimes(null, null);

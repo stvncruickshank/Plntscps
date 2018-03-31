@@ -21,8 +21,8 @@ public class CreateTicket extends Fragment {
 
         View rootView = inflater.inflate(R.layout.fragment_newtix, container, false);
 
-        TicketLab.get(getActivity()).addTicket(new Ticket("hancock", "march 17 2018", "boston"));
-
+        TicketLab.get(getActivity()).addTicket(new Ticket("binney street", "march 17 2018", "boston"));
+        TicketLab.get(getActivity()).deleteTicket("hancock");
         //tLab.get(getActivity()).addTicket(new Ticket("hancock", "march 17, 2018", "boston"));
         return rootView;
     }
