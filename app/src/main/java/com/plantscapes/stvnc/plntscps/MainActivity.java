@@ -2,6 +2,9 @@ package com.plantscapes.stvnc.plntscps;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.content.ContentValues;
+import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.ActionBarDrawerToggle;
@@ -15,6 +18,10 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import java.util.UUID;
+
+import static com.plantscapes.stvnc.plntscps.TicketLab.sTixLab;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,11 +31,17 @@ public class MainActivity extends AppCompatActivity {
     ActionBarDrawerToggle mDrawerToggle;
     private CharSequence mDrawerTitle;
     private CharSequence mTitle;
+    public static TicketLab tLab;
+    public static Context mContext;
+    public Ticket t = new Ticket("hancock", "march 17 2018", "boston");
+
+
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_main);
+            tLab = new TicketLab(this);
 
             mTitle = mDrawerTitle = getTitle();
             ObjectDrawerItem[] drawerItem = new ObjectDrawerItem[3];
@@ -37,6 +50,15 @@ public class MainActivity extends AppCompatActivity {
             drawerItem[1] = new ObjectDrawerItem(R.drawable.ic_menu_manage, "Read");
             drawerItem[2] = new ObjectDrawerItem(R.drawable.ic_menu_camera, "Help");
 
+
+            //sTixLab.addTicket(new Ticket("hancock", "march 17, 2018", "boston"));
+            //tLab.addTicket(new Ticket("hancock", "march 17, 2018", "boston"));
+            //tLab.get(this.)
+            //tLab.addTicket(t);
+            //TicketLab.get(tLab.addTicket(t));
+
+            //TicketLab.get()
+            //TicketLab tixLab = new TicketLab(this);
 
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setHomeButtonEnabled(true);

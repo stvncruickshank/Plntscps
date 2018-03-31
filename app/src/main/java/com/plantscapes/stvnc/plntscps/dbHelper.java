@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,32 +13,30 @@ import java.util.List;
  */
 
 public class dbHelper extends SQLiteOpenHelper {
-    // Database Version
-    private static final int DATABASE_VERSION = 1;
-
-    // Database Name
-    private static final String DATABASE_NAME = "tickets_db";
-
+    private static final int VERSION = 1;
+    private static final String DATABASE_NAME = "TicketsDB.db";
 
     public dbHelper(Context context) {
-        super(context, DATABASE_NAME, null, DATABASE_VERSION);
+        super(context, DATABASE_NAME, null, VERSION);
     }
 
-    // Creating Tables
     @Override
     public void onCreate(SQLiteDatabase db) {
+        //create the db!
+        Log.d("CriminalIntent", Log.getStackTraceString(new Exception()));
 
-        // create notes table
-        db.execSQL(Ticket.CREATE_TABLE);
+        db.execSQL("create table " + TicketSchema.TicketTable.NAME + "(" +
+                " _id integer primary key autoincrement, " +
+                TicketSchema.TicketTable.Cols.R_NAME + ", " +
+                TicketSchema.TicketTable.Cols.R_DATE + ", " +
+                //ResSchema.ResTable.Cols.R_TIME + ", " +
+                TicketSchema.TicketTable.Cols.R_LOC +
+                //ResSchema.ResTable.Cols.R_PH +
+                ")"
+        );
     }
 
-    // Upgrading database
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        // Drop older table if existed
-        db.execSQL("DROP TABLE IF EXISTS " + Ticket.TABLE_NAME);
-
-        // Create tables again
-        onCreate(db);
     }
 }

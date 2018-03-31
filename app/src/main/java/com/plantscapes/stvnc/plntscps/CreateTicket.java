@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 
 public class CreateTicket extends Fragment {
 
+    public static TicketLab tLab;
     public CreateTicket() {
     }
 
@@ -20,6 +21,9 @@ public class CreateTicket extends Fragment {
 
         View rootView = inflater.inflate(R.layout.fragment_newtix, container, false);
 
+        TicketLab.get(getActivity()).addTicket(new Ticket("hancock", "march 17 2018", "boston"));
+
+        //tLab.get(getActivity()).addTicket(new Ticket("hancock", "march 17, 2018", "boston"));
         return rootView;
     }
 
